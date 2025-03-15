@@ -35,7 +35,7 @@ exports.uploadFest = multer({
 //? การเอาข้อมูลที่ส่งมาจาก Frontend เพิ่ม(Create/Insert) ลงตารางใน DB
 exports.createFest = async (req, res) => {
   try {
-    const { festName,festDetail,festState,festCost,userId,festImage,festNumDay } = req.body; 
+    const { festName,festDetail,festState,festCost,userId,festNumDay } = req.body; 
     const result = await prisma.fest_tb.create({
       data: {
         festName: festName,
@@ -43,7 +43,6 @@ exports.createFest = async (req, res) => {
         festState: festState,
         festCost: parseFloat(festCost),
         userId:parseInt(userId),
-        festImage:festImage,
         festNumDay:parseInt(festNumDay),
         festImage:req.file ? req.file.path.replace("images\\fests\\", '') : "",
       }
